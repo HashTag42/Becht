@@ -12,6 +12,7 @@ public class CartPage
 
     // CSS SELECTORS
     private const string CartItem = ".cart_item";
+    private const string CheckoutButton = "#checkout";
 
     // PRIVATE FIELDS
     private readonly IPage _page;
@@ -20,6 +21,11 @@ public class CartPage
     public CartPage(IPage page) => _page = page;
 
     // METHODS
+
+    public async Task ClickCheckoutAsync()
+    {
+        await _page.ClickAsync(CheckoutButton);
+    }
 
     public async Task<int> GetCartItemCountAsync()
     {

@@ -15,8 +15,9 @@ public class HappyPathTests : TestBase
     [Fact]
     public async Task StandardUser_CanCompleteFullPurchaseFlow()
     {
-        // Arrange
+        // ARRANGE
         var cartPage = new CartPage(Page);
+        var checkoutPage = new CheckoutPage(Page);
         var inventoryPage = new InventoryPage(Page);
         var loginPage = new LoginPage(Page);
 
@@ -41,6 +42,8 @@ public class HappyPathTests : TestBase
         Assert.Equal(2, await cartPage.GetCartItemCountAsync());
 
         // STEP 5: Checkout
+        await cartPage.ClickCheckoutAsync();
+        Assert.True(await checkoutPage.IsOnStepOneAsync(), "Should navigate to checkout step one");
 
         // STEP 6: Fill shipping info
 

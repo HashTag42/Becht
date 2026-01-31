@@ -46,6 +46,9 @@ public class HappyPathTests : TestBase
         Assert.True(await checkoutPage.IsOnStepOneAsync(), "Should navigate to checkout step one");
 
         // STEP 6: Fill shipping info
+        await checkoutPage.FillShippingInfoAsync("Cesar", "Garcia", "12345");
+        await checkoutPage.ClickContinueAsync();
+        Assert.True(await checkoutPage.IsOnStepTwoAsync(), "Should navigate to checkout step two");
 
         // STEP 7: Modify total to $500
 

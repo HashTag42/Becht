@@ -8,25 +8,68 @@ namespace SauceDemo.Pages;
 /// </summary>
 public class CheckoutPage
 {
+    //
     // URLs
+    //
     public const string StepOneUrl = "https://www.saucedemo.com/checkout-step-one.html";
     public const string StepTwoUrl = "https://www.saucedemo.com/checkout-step-two.html";
     public const string CompleteUrl = "https://www.saucedemo.com/checkout-complete.html";
 
-    // STEP 1 CSS SELECTORS
+    //
+    // CSS SELECTORS
+    //
+    private const string ContinueButton = "#continue";
+    private const string FirstNameInput = "#first-name";
+    private const string LastNameInput = "#last-name";
+    private const string PostalCodeInput = "#postal-code";
 
+    //
     // PRIVATE FIELDS
+    //
     private readonly IPage _page;
 
+    //
     // CONSTRUCTOR
+    //
     public CheckoutPage(IPage page) => _page = page;
 
+    //
     // METHODS
+    //
+    public async Task ClickContinueAsync()
+    {
+        await _page.ClickAsync(ContinueButton);
+    }
+
+    public async Task FillFirstNameAsync(string firstName)
+    {
+        await _page.FillAsync(FirstNameInput, firstName);
+    }
+
+    public async Task FillLastNameAsync(string lastName)
+    {
+        await _page.FillAsync(LastNameInput, lastName);
+    }
+
+    public async Task FillPostalCodeAsync(string postalCode)
+    {
+        await _page.FillAsync(PostalCodeInput, postalCode);
+    }
+
+    public async Task FillShippingInfoAsync(string firstName, string lastName, string postalCode)
+    {
+        await FillFirstNameAsync(firstName);
+        await FillLastNameAsync(lastName);
+        await FillPostalCodeAsync(postalCode);
+    }
 
     public async Task<bool> IsOnStepOneAsync()
     {
         return _page.Url.Contains("checkout-step-one.html");
     }
 
-
+    public async Task<bool> IsOnStepTwoAsync()
+    {
+        return _page.Url.Contains("checkout-step-two.html");
+    }
 }

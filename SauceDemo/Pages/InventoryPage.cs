@@ -13,6 +13,7 @@ public class InventoryPage
     // CSS Selectors
     private const string AddToCartButton = "button[data-test^='add-to-cart']";
     private const string InventoryItem = ".inventory_item";
+    private const string RemoveButton = "button[data-test^='remove']";
     private const string ShoppingCartBadge = ".shopping_cart_badge";
 
     // Private field
@@ -36,5 +37,12 @@ public class InventoryPage
 
         var text = await badge.TextContentAsync();
         return int.TryParse(text, out var count) ? count : 0;
+    }
+
+    public async Task RemoveItemFromCartByIndexAsync(int index)
+    {
+        var items = _page.Locator(InventoryItem);
+        var item = items.Nth(index);
+        await item.Locator(RemoveButton).ClickAsync();
     }
 }

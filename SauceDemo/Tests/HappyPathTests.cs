@@ -29,5 +29,25 @@ public class HappyPathTests : TestBase
         await inventoryPage.AddItemToCartByIndexAsync(1);
         await inventoryPage.AddItemToCartByIndexAsync(2);
         Assert.Equal(3, await inventoryPage.GetCartItemCountAsync());
+
+        // Remove 1 item
+        await inventoryPage.RemoveItemFromCartByIndexAsync(0);
+        Assert.Equal(2, await inventoryPage.GetCartItemCountAsync());
+
+        // Go to cart
+
+        // Checkout
+
+        // Fill shipping info
+
+        // Modify total to $500
+
+        // Take screenshot of modified total
+
+        // Finish order
+
+        // Go back home
+
+        // Take screenshot
     }
 }

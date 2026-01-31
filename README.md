@@ -6,7 +6,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 
 * Create Playwright scenarios to test the functionality of a fictitious shopping site at [https://www.saucedemo.com](https://www.saucedemo.com)
 
-  * [ ] Happy Path
+  * [x] Happy Path
   * [ ] Failed Login
   * [ ] Problem User
   * [ ] Glitchy User
@@ -28,6 +28,8 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
     * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file
     * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
     * `Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
+      * [`CartPage.cs`](./SauceDemo/Pages/CartPage.cs)
+      * [`CheckoutPage.cs`](./SauceDemo/Pages/CheckoutPage.cs)
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `Tests/` - xUnit test classes to the test different scenarios

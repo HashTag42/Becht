@@ -28,6 +28,12 @@ public class CheckoutPage
     private const string SummaryTotal = ".summary_total_label";
 
     //
+    // LOCATORS
+    //
+    public ILocator CompleteHeaderText => _page.Locator(CompleteHeader);
+    public ILocator Total => _page.Locator(SummaryTotal);
+
+    //
     // PRIVATE FIELDS
     //
     private readonly IPage _page;
@@ -40,6 +46,7 @@ public class CheckoutPage
     //
     // METHODS
     //
+
     public async Task ClickBackHomeAsync()
     {
         await _page.ClickAsync(BackHomeButton);

@@ -15,57 +15,65 @@ public class HappyPathTests : TestBase
     [Fact]
     public async Task StandardUser_CanCompleteFullPurchaseFlow()
     {
+        //
         // ARRANGE
+        //
         var cartPage = new CartPage(Page);
         var checkoutPage = new CheckoutPage(Page);
         var inventoryPage = new InventoryPage(Page);
         var loginPage = new LoginPage(Page);
 
+        //
+        // ACT & ASSERT
+        //
+
         // STEP 1: Login
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(LoginPage.StandardUser, LoginPage.Password);
-        await Assertions.Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
+        await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
         // STEP 2: Add 3 items to the cart
         await inventoryPage.AddItemToCartByIndexAsync(0);
         await inventoryPage.AddItemToCartByIndexAsync(1);
         await inventoryPage.AddItemToCartByIndexAsync(2);
-        Assert.Equal(3, await inventoryPage.GetCartItemCountAsync());
+        await Assertions.Expect(inventoryPage.CartBadge).ToHaveTextAsync("3");
 
         // STEP 3: Remove 1 item
         await inventoryPage.RemoveItemFromCartByIndexAsync(0);
-        Assert.Equal(2, await inventoryPage.GetCartItemCountAsync());
+        await Assertions.Expect(inventoryPage.CartBadge).ToHaveTextAsync("2");
 
         // STEP 4: Go to cart
         await inventoryPage.ClickShoppingCartAsync();
         Assert.True(await cartPage.IsOnPageAsync(), "Should navigate to cart page");
-        Assert.Equal(2, await cartPage.GetCartItemCountAsync());
+        await Assertions.Expect(cartPage.CartItems).ToHaveCountAsync(2);
 
         // STEP 5: Checkout
         await cartPage.ClickCheckoutAsync();
-        Assert.True(await checkoutPage.IsOnStepOneAsync(), "Should navigate to checkout step one");
+        await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepOneUrl);
 
         // STEP 6: Fill shipping info
         await checkoutPage.FillShippingInfoAsync("Cesar", "Garcia", "12345");
         await checkoutPage.ClickContinueAsync();
-        Assert.True(await checkoutPage.IsOnStepTwoAsync(), "Should navigate to checkout step two");
+        await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepTwoUrl);
 
         // STEP 7: Modify total to $500
         await checkoutPage.ModifyTotalAsync("Total: $500.00");
         var modifiedTotal = await checkoutPage.GetTotalAsync();
-        Assert.Equal("Total: $500.00", modifiedTotal);
+        await Assertions.Expect(checkoutPage.Total).ToHaveTextAsync("Total: $500.00");
 
         // STEP 8: Finish order
         await checkoutPage.ClickFinishAsync();
         Assert.True(await checkoutPage.IsOnCompletePageAsync(), "Should navigate to checkout complete page");
         var completeHeader = await checkoutPage.GetCompleteHeaderAsync();
-        Assert.Equal("Thank you for your order!", completeHeader);
+        await Assertions.Expect(checkoutPage.CompleteHeaderText).ToHaveTextAsync("Thank you for your order!");
 
         // STEP 9: Go back home
         await checkoutPage.ClickBackHomeAsync();
-        Assert.True(await inventoryPage.IsOnPageAsync(), "Should navigate back to inventory page");
+        await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
         // For debugging purposes
-        await Task.Delay(TimeSpan.FromSeconds(3), TestContext.Current.CancellationToken);
+        #if DEBUG
+            await Task.Delay(TimeSpan.FromSeconds(1), TestContext.Current.CancellationToken);
+        #endif
     }
 }

@@ -7,20 +7,35 @@ namespace SauceDemo.Pages;
 /// </summary>
 public class CartPage
 {
+    //
     // URL
+    //
     public const string Url = "https://www.saucedemo.com/cart.html";
 
+    //
     // CSS SELECTORS
+    //
     private const string CartItem = ".cart_item";
     private const string CheckoutButton = "#checkout";
 
+    //
+    // LOCATORS
+    //
+    public ILocator CartItems => _page.Locator(CartItem);
+
+    //
     // PRIVATE FIELDS
+    //
     private readonly IPage _page;
 
+    //
     // CONSTRUCTOR
+    //
     public CartPage(IPage page) => _page = page;
 
+    //
     // METHODS
+    //
 
     public async Task ClickCheckoutAsync()
     {

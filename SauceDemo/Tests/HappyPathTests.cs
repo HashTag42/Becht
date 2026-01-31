@@ -16,38 +16,41 @@ public class HappyPathTests : TestBase
     public async Task StandardUser_CanCompleteFullPurchaseFlow()
     {
         // Arrange
-        var loginPage = new LoginPage(Page);
+        var cartPage = new CartPage(Page);
         var inventoryPage = new InventoryPage(Page);
+        var loginPage = new LoginPage(Page);
 
-        // Login
+        // STEP 1: Login
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(LoginPage.StandardUser, LoginPage.Password);
         await Assertions.Expect(Page).ToHaveURLAsync("https://www.saucedemo.com/inventory.html");
 
-        // Add 3 items to the cart
+        // STEP 2: Add 3 items to the cart
         await inventoryPage.AddItemToCartByIndexAsync(0);
         await inventoryPage.AddItemToCartByIndexAsync(1);
         await inventoryPage.AddItemToCartByIndexAsync(2);
         Assert.Equal(3, await inventoryPage.GetCartItemCountAsync());
 
-        // Remove 1 item
+        // STEP 3: Remove 1 item
         await inventoryPage.RemoveItemFromCartByIndexAsync(0);
         Assert.Equal(2, await inventoryPage.GetCartItemCountAsync());
 
-        // Go to cart
+        // STEP 4: Go to cart
+        await inventoryPage.ClickShoppingCartAsync();
+        Assert.True(await cartPage.IsOnPageAsync(), "Should navigate to cart page");
+        Assert.Equal(2, await cartPage.GetCartItemCountAsync());
 
-        // Checkout
+        // STEP 5: Checkout
 
-        // Fill shipping info
+        // STEP 6: Fill shipping info
 
-        // Modify total to $500
+        // STEP 7: Modify total to $500
 
-        // Take screenshot of modified total
+        // STEP 8: Finish order
 
-        // Finish order
+        // STEP 9: Go back home
 
-        // Go back home
-
-        // Take screenshot
+        // Remove before shipping to production
+        await Task.Delay(TimeSpan.FromSeconds(1), TestContext.Current.CancellationToken);
     }
 }

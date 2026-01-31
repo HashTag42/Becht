@@ -7,10 +7,14 @@ namespace SauceDemo.Pages;
 /// </summary>
 public class InventoryPage
 {
+    //
     // URL
+    //
     public const string Url = "https://www.saucedemo.com/inventory.html";
 
+    //
     // CSS SELECTORS
+    //
 
     // CSS Attribute selector: Matches all button elements where the `data-test` attribute starts with `add-to-cart`
     private const string AddToCartButton = "button[data-test^='add-to-cart']";
@@ -20,14 +24,19 @@ public class InventoryPage
     private const string ShoppingCartBadge = ".shopping_cart_badge";
     private const string ShoppingCartLink = ".shopping_cart_link";
 
+    //
     // PRIVATE FIELDS
+    //
     private readonly IPage _page;
 
+    //
     // CONSTRUCTOR
+    //
     public InventoryPage(IPage page) => _page = page;
 
+    //
     // METHODS
-
+    //
     public async Task AddItemToCartByIndexAsync(int index)
     {
         var items = _page.Locator(InventoryItem);
@@ -48,6 +57,11 @@ public class InventoryPage
 
         var text = await badge.TextContentAsync();
         return int.TryParse(text, out var count) ? count : 0;
+    }
+
+    public async Task<bool> IsOnPageAsync()
+    {
+        return _page.Url.Contains("inventory.html");
     }
 
     public async Task RemoveItemFromCartByIndexAsync(int index)

@@ -56,10 +56,16 @@ public class HappyPathTests : TestBase
         Assert.Equal("Total: $500.00", modifiedTotal);
 
         // STEP 8: Finish order
+        await checkoutPage.ClickFinishAsync();
+        Assert.True(await checkoutPage.IsOnCompletePageAsync(), "Should navigate to checkout complete page");
+        var completeHeader = await checkoutPage.GetCompleteHeaderAsync();
+        Assert.Equal("Thank you for your order!", completeHeader);
 
         // STEP 9: Go back home
+        await checkoutPage.ClickBackHomeAsync();
+        Assert.True(await inventoryPage.IsOnPageAsync(), "Should navigate back to inventory page");
 
-        // Remove before shipping to production
-        await Task.Delay(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
+        // For debugging purposes
+        await Task.Delay(TimeSpan.FromSeconds(3), TestContext.Current.CancellationToken);
     }
 }

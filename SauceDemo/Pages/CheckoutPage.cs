@@ -18,7 +18,10 @@ public class CheckoutPage
     //
     // CSS SELECTORS
     //
+    private const string BackHomeButton = "#back-to-products";
+    private const string CompleteHeader = ".complete-header";
     private const string ContinueButton = "#continue";
+    private const string FinishButton = "#finish";
     private const string FirstNameInput = "#first-name";
     private const string LastNameInput = "#last-name";
     private const string PostalCodeInput = "#postal-code";
@@ -37,9 +40,19 @@ public class CheckoutPage
     //
     // METHODS
     //
-    public async Task ClickContinueAsync()
+    public async Task ClickBackHomeAsync()
+    {
+        await _page.ClickAsync(BackHomeButton);
+    }
+
+        public async Task ClickContinueAsync()
     {
         await _page.ClickAsync(ContinueButton);
+    }
+
+    public async Task ClickFinishAsync()
+    {
+        await _page.ClickAsync(FinishButton);
     }
 
     public async Task FillFirstNameAsync(string firstName)
@@ -64,9 +77,19 @@ public class CheckoutPage
         await FillPostalCodeAsync(postalCode);
     }
 
+    public async Task<string> GetCompleteHeaderAsync()
+    {
+        return await _page.Locator(CompleteHeader).TextContentAsync() ?? string.Empty;
+    }
+
     public async Task<string> GetTotalAsync()
     {
         return await _page.Locator(SummaryTotal).TextContentAsync() ?? string.Empty;
+    }
+
+    public async Task<bool> IsOnCompletePageAsync()
+    {
+        return _page.Url.Contains("checkout-complete.html");
     }
 
     public async Task<bool> IsOnStepOneAsync()

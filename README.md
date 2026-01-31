@@ -23,14 +23,15 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 ## Solution
 
 * Repo: [`https://github.com/HashTag42/Becht`](https://github.com/HashTag42/Becht)
-  * `Becht.sln`
+  * [`Becht.sln`](./Becht.sln) - Solution file
   * `SauceDemo/`
-    * `SauceDemo.csproj`
-    * `TestBase.cs`: Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle.
-    * `Pages/`
-      * `LoginPage.cs`: Page Object Model (POM) class for Playwright testing against the SauceDemo website.
-    * `Tests/`
-      * `HappyPathTests.cs`
+    * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file
+    * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
+    * `Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
+      * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
+      * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
+    * `Tests/` - xUnit test classes to the test different scenarios
+      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs)
 
 ## Dependencies
 

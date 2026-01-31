@@ -2,6 +2,10 @@ using Microsoft.Playwright;
 
 namespace SauceDemo.Pages;
 
+/// <summary>
+/// Page Object Model for the Sauce Demo Login Page.
+/// Encapsulates all login page interactions.
+/// </summary>
 public class LoginPage
 {
     // URL
@@ -10,6 +14,7 @@ public class LoginPage
     // CSS Selectors
     private const string UsernameInput = "#user-name";
     private const string PasswordInput = "#password";
+    // Note the login button is actually an <input type="submit" rather than a button.
     private const string LoginButton = "#login-button";
 
     // Test credentials

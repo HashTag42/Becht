@@ -51,12 +51,15 @@ public class HappyPathTests : TestBase
         Assert.True(await checkoutPage.IsOnStepTwoAsync(), "Should navigate to checkout step two");
 
         // STEP 7: Modify total to $500
+        await checkoutPage.ModifyTotalAsync("Total: $500.00");
+        var modifiedTotal = await checkoutPage.GetTotalAsync();
+        Assert.Equal("Total: $500.00", modifiedTotal);
 
         // STEP 8: Finish order
 
         // STEP 9: Go back home
 
         // Remove before shipping to production
-        await Task.Delay(TimeSpan.FromSeconds(1), TestContext.Current.CancellationToken);
+        await Task.Delay(TimeSpan.FromSeconds(5), TestContext.Current.CancellationToken);
     }
 }

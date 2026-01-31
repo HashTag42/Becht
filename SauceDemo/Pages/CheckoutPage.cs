@@ -22,6 +22,7 @@ public class CheckoutPage
     private const string FirstNameInput = "#first-name";
     private const string LastNameInput = "#last-name";
     private const string PostalCodeInput = "#postal-code";
+    private const string SummaryTotal = ".summary_total_label";
 
     //
     // PRIVATE FIELDS
@@ -63,6 +64,11 @@ public class CheckoutPage
         await FillPostalCodeAsync(postalCode);
     }
 
+    public async Task<string> GetTotalAsync()
+    {
+        return await _page.Locator(SummaryTotal).TextContentAsync() ?? string.Empty;
+    }
+
     public async Task<bool> IsOnStepOneAsync()
     {
         return _page.Url.Contains("checkout-step-one.html");
@@ -71,5 +77,16 @@ public class CheckoutPage
     public async Task<bool> IsOnStepTwoAsync()
     {
         return _page.Url.Contains("checkout-step-two.html");
+    }
+
+    public async Task ModifyTotalAsync(string newTotal)
+    {
+        // Use JavaScript to modify the total display
+        await _page.EvaluateAsync($@"
+            const totalElement = document.querySelector('{SummaryTotal}');
+            if (totalElement) {{
+                totalElement.textContent = '{newTotal}';
+            }}
+        ");
     }
 }

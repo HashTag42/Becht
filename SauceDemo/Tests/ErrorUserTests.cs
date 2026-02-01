@@ -28,7 +28,7 @@ public class ErrorUserTests : TestBase
         //
 
         // Step 1: Login
-        TestContext.Current.TestOutputHelper?.WriteLine("\n[STEP 1] Logging in with error_user...");
+        Log("[STEP 1] Logging in with error_user...");
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.ErrorUser, TestData.Credentials.Password);
 
@@ -42,14 +42,14 @@ public class ErrorUserTests : TestBase
         await TakeScreenshotAsync("ErrorUser_AfterLogin");
 
         // Step 2: Add 3 items to cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 2] Adding 3 items to cart...");
+        Log("[STEP 2] Adding 3 items to cart...");
         for (int i = 0; i < 3; i++)
         {
             await inventoryPage.AddItemToCartByIndexAsync(i);
         }
 
         var cartCount = await inventoryPage.GetCartItemCountAsync();
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Cart count after adding: {cartCount}");
+        Log($"[INFO] Cart count after adding: {cartCount}");
 
         if (cartCount != 3)
         {
@@ -57,11 +57,11 @@ public class ErrorUserTests : TestBase
         }
 
         // Step 3: Remove 1 item
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 3] Removing 1 item from cart...");
+        Log("[STEP 3] Removing 1 item from cart...");
         await inventoryPage.RemoveItemFromCartByIndexAsync(0);
 
         cartCount = await inventoryPage.GetCartItemCountAsync();
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Cart count after removal: {cartCount}");
+        Log($"[INFO] Cart count after removal: {cartCount}");
 
         if (cartCount != 2)
         {
@@ -69,7 +69,7 @@ public class ErrorUserTests : TestBase
         }
 
         // Step 4: Go to cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 4] Going to cart...");
+        Log("[STEP 4] Going to cart...");
         await inventoryPage.ClickShoppingCartAsync();
 
         if (!await cartPage.IsOnPageAsync())
@@ -80,7 +80,7 @@ public class ErrorUserTests : TestBase
         }
 
         // Step 5: Checkout
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 5] Starting checkout...");
+        Log("[STEP 5] Starting checkout...");
         await cartPage.ClickCheckoutAsync();
 
         if (!await checkoutPage.IsOnStepOneAsync())
@@ -91,11 +91,11 @@ public class ErrorUserTests : TestBase
         }
 
         // Step 6: Fill form - test each field individually
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 6] Testing checkout form fields...");
+        Log("[STEP 6] Testing checkout form fields...");
 
         // Test First Name
         var firstNameSuccess = await checkoutPage.TryFillFirstNameAsync("John");
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] First Name field: {(firstNameSuccess ? "OK" : "FAILED")}");
+        Log($"[INFO] First Name field: {(firstNameSuccess ? "OK" : "FAILED")}");
         if (!firstNameSuccess)
         {
             issues.Add("ISSUE: Could not enter First Name");
@@ -103,7 +103,7 @@ public class ErrorUserTests : TestBase
 
         // Test Last Name (expected to fail per requirements)
         var lastNameSuccess = await checkoutPage.TryFillLastNameAsync("Doe");
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Last Name field: {(lastNameSuccess ? "OK" : "FAILED")}");
+        Log($"[INFO] Last Name field: {(lastNameSuccess ? "OK" : "FAILED")}");
         if (!lastNameSuccess)
         {
             issues.Add("ISSUE: Could not enter Last Name - field does not accept input");
@@ -111,7 +111,7 @@ public class ErrorUserTests : TestBase
 
         // Test Postal Code
         var postalCodeSuccess = await checkoutPage.TryFillPostalCodeAsync("12345");
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Postal Code field: {(postalCodeSuccess ? "OK" : "FAILED")}");
+        Log($"[INFO] Postal Code field: {(postalCodeSuccess ? "OK" : "FAILED")}");
         if (!postalCodeSuccess)
         {
             issues.Add("ISSUE: Could not enter Postal Code");
@@ -120,7 +120,7 @@ public class ErrorUserTests : TestBase
         await TakeScreenshotAsync("ErrorUser_CheckoutForm");
 
         // Step 7: Try to continue
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 7] Attempting to continue...");
+        Log("[STEP 7] Attempting to continue...");
         await checkoutPage.ClickContinueAsync();
         await Page.WaitForTimeoutAsync(1000);
 
@@ -128,16 +128,16 @@ public class ErrorUserTests : TestBase
         {
             var errorMsg = await checkoutPage.GetErrorMessageAsync();
             issues.Add($"CHECKOUT ERROR: {errorMsg}");
-            TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Form error displayed: {errorMsg}");
+            Log($"[INFO] Form error displayed: {errorMsg}");
         }
 
         // Check if we made it to step two
         if (await checkoutPage.IsOnStepTwoAsync())
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("[INFO] Made it to checkout step two");
+            Log("[INFO] Made it to checkout step two");
 
             // Step 8: Try to finish
-            TestContext.Current.TestOutputHelper?.WriteLine("[STEP 8] Attempting to finish order...");
+            Log("[STEP 8] Attempting to finish order...");
 
             await TakeScreenshotAsync("ErrorUser_BeforeFinish");
 
@@ -170,7 +170,7 @@ public class ErrorUserTests : TestBase
         }
         else
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("[INFO] Could not proceed to step two");
+            Log("[INFO] Could not proceed to step two");
             await TakeScreenshotAsync("ErrorUser_StuckOnStepOne");
         }
 
@@ -183,19 +183,19 @@ public class ErrorUserTests : TestBase
 
     private void ReportIssues(List<string> issues)
     {
-        TestContext.Current.TestOutputHelper?.WriteLine("ERROR USER TEST REPORT");
-        TestContext.Current.TestOutputHelper?.WriteLine($"Total issues found: {issues.Count}");
+        Log("[ERROR USER TEST REPORT]");
+        Log($"Total issues found: {issues.Count}");
 
         if (issues.Count == 0)
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("  No issues found (unexpected for error_user)");
+            Log("  No issues found (unexpected for error_user)");
         }
         else
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("Issues preventing checkout completion:");
+            Log("Issues preventing checkout completion:");
             foreach (var issue in issues)
             {
-                TestContext.Current.TestOutputHelper?.WriteLine($"  • {issue}");
+                Log($"  • {issue}");
             }
         }
     }

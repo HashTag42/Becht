@@ -16,10 +16,17 @@ public class LoginPage
     //
     // CSS SELECTORS
     //
-    private const string UsernameInput = "#user-name";
-    private const string PasswordInput = "#password";
+    private const string ErrorMessageSelector = "[data-test='error']";
     // Note the login button is actually an <input type="submit" rather than a button.
     private const string LoginButton = "#login-button";
+    private const string PasswordInput = "#password";
+    private const string UsernameInput = "#user-name";
+
+    //
+    // LOCATORS
+    //
+    public ILocator ErrorMessage => _page.Locator(ErrorMessageSelector);
+
 
     //
     // PRIVATE FIELDS
@@ -35,8 +42,16 @@ public class LoginPage
     // METHODS
     //
 
-    // Navigates to the login URL
-    public async Task NavigateAsync() => await _page.GotoAsync(Url);
+    public async Task<string> GetErrorMessageAsync()
+    {
+        await ErrorMessage.WaitForAsync();
+        return await ErrorMessage.TextContentAsync() ?? string.Empty;
+    }
+
+    public async Task<bool> IsErrorDisplayedAsync()
+    {
+        return await ErrorMessage.IsVisibleAsync();
+    }
 
     // Perform the login action
     public async Task LoginAsync(string username, string password)
@@ -45,4 +60,7 @@ public class LoginPage
         await _page.FillAsync(PasswordInput, password);
         await _page.ClickAsync(LoginButton);
     }
+
+    // Navigates to the login URL
+    public async Task NavigateAsync() => await _page.GotoAsync(Url);
 }

@@ -34,7 +34,8 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `Tests/` - xUnit test classes to the test different scenarios
-      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs)
+      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2.2
+      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 2.1
 
 ## Dependencies
 

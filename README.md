@@ -34,12 +34,13 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `./Tests/` - xUnit test classes to the test different scenarios
-      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 1
-      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2
-      * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 3
-      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 4
-      * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Scenario 5
-      * [`VisualUserTests.cs`](./SauceDemo/Tests/VisualUserTests.cs) - Scenario 6
+      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Test Scenario 1
+      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Test Scenario 2
+      * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Test Scenario 3
+      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Test Scenario 4
+      * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Test Scenario 5
+      * [`VisualUserTests.cs`](./SauceDemo/Tests/VisualUserTests.cs) - Test Scenario 6
+      * [`ParameterizedTests.cs`](./SauceDemo/Tests/ParameterizedTests.cs) - Bonus Scenario 1
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
     * `./bin/Debug/net8.0/logs/test-log.txt` - Upon test execution, a test log will be populated here
 

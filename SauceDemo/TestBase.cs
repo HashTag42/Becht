@@ -45,6 +45,7 @@ public abstract class TestBase : IAsyncLifetime
         // Launches the browser with the headless setting
         Browser = await browser.LaunchAsync(new BrowserTypeLaunchOptions
         {
+            ExecutablePath = @"C:\Tools\chrome-win64\chrome.exe",
             Headless = TestData.Settings.Headless
         });
 

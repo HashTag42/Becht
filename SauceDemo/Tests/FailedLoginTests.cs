@@ -17,15 +17,19 @@ public class FailedLoginTests : TestBase
         //
         var loginPage = new LoginPage(Page);
 
+        Log("[SCENARIO] Failed Login");
+
         //
         // ACT
         //
+        Log("[STEP 1] Attempt to login");
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.LockedOutUser, TestData.Credentials.Password);
 
         //
         // ASSERT
         //
+        Log("[STEP 2] Verify there is an error message");
         await Assertions.Expect(loginPage.ErrorMessage).ToBeVisibleAsync();
         var errorMessage = await loginPage.GetErrorMessageAsync();
         await Assertions.Expect(loginPage.ErrorMessage).ToContainTextAsync("locked out", new() { IgnoreCase = true });

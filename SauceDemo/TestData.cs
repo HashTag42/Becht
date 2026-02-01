@@ -7,7 +7,7 @@ public static class TestData
 {
     public static class Settings
     {
-        public const int DelaySeconds = 5;
+        public const int DelaySeconds = 1;
         public const bool EnableDebugDelay = true;
         public const bool Headless = false;
     }

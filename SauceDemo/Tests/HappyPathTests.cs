@@ -6,8 +6,8 @@ using SauceDemo.Pages;
 namespace SauceDemo.Tests;
 
 /// <summary>
-/// Inherits from TestBase to access the Page property and
-/// ensures browser setup/teardown runs before/after each test
+/// Scenario 1: Happy Path
+/// Login with standard_user, add items to cart, checkout, modify total, complete order.
 /// </summary>
 public class HappyPathTests : TestBase
 {

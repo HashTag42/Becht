@@ -11,9 +11,9 @@ public class CheckoutPage
     //
     // URLs
     //
+    public const string CompleteUrl = TestData.Urls.CheckoutComplete;
     public const string StepOneUrl = TestData.Urls.CheckoutStepOne;
     public const string StepTwoUrl = TestData.Urls.CheckoutStepTwo;
-    public const string CompleteUrl = TestData.Urls.CheckoutComplete;
 
     //
     // CSS SELECTORS
@@ -21,6 +21,7 @@ public class CheckoutPage
     private const string BackHomeButton = "#back-to-products";
     private const string CompleteHeader = ".complete-header";
     private const string ContinueButton = "#continue";
+    private const string ErrorMessage = "[data-test='error']";
     private const string FinishButton = "#finish";
     private const string FirstNameInput = "#first-name";
     private const string LastNameInput = "#last-name";
@@ -89,9 +90,22 @@ public class CheckoutPage
         return await _page.Locator(CompleteHeader).TextContentAsync() ?? string.Empty;
     }
 
+    public async Task<string> GetErrorMessageAsync()
+    {
+        var errorElement = _page.Locator(ErrorMessage);
+        if (!await errorElement.IsVisibleAsync())
+            return string.Empty;
+        return await errorElement.TextContentAsync() ?? string.Empty;
+    }
+
     public async Task<string> GetTotalAsync()
     {
         return await _page.Locator(SummaryTotal).TextContentAsync() ?? string.Empty;
+    }
+
+    public async Task<bool> IsErrorDisplayedAsync()
+    {
+        return await _page.Locator(ErrorMessage).IsVisibleAsync();
     }
 
     public async Task<bool> IsOnCompletePageAsync()
@@ -118,5 +132,47 @@ public class CheckoutPage
                 totalElement.textContent = '{newTotal}';
             }}
         ");
+    }
+
+    public async Task<bool> TryFillFirstNameAsync(string firstName)
+    {
+        try
+        {
+            await _page.FillAsync(FirstNameInput, firstName);
+            var value = await _page.InputValueAsync(FirstNameInput);
+            return value == firstName;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> TryFillLastNameAsync(string lastName)
+    {
+        try
+        {
+            await _page.FillAsync(LastNameInput, lastName);
+            var value = await _page.InputValueAsync(LastNameInput);
+            return value == lastName;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> TryFillPostalCodeAsync(string postalCode)
+    {
+        try
+        {
+            await _page.FillAsync(PostalCodeInput, postalCode);
+            var value = await _page.InputValueAsync(PostalCodeInput);
+            return value == postalCode;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

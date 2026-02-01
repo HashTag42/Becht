@@ -20,23 +20,24 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
   * [ ] Performance/Load testing of 10 users
   * [ ] CI/CD gated check-in
 
-## Solution
+## Solution structure
 
 * Repo: [`https://github.com/HashTag42/Becht`](https://github.com/HashTag42/Becht)
   * [`Becht.sln`](./Becht.sln) - Solution file
-  * `SauceDemo/`
+  * `./SauceDemo/`
     * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file
     * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
     * [`TestData.cs`](./SauceDemo/TestData.cs) - Configuration file containging static constants for use across tests
-    * `Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
+    * `./Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
       * [`CartPage.cs`](./SauceDemo/Pages/CartPage.cs)
       * [`CheckoutPage.cs`](./SauceDemo/Pages/CheckoutPage.cs)
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
-    * `Tests/` - xUnit test classes to the test different scenarios
+    * `./Tests/` - xUnit test classes to the test different scenarios
       * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2.2
       * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 2.1
-    * `bin/Debug/net8.0/screenshots` - Screenshots generated during the tests
+      * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 2.3
+    * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
 
 ## Dependencies
 
@@ -46,5 +47,6 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 * [`xUnit.v3.mtp-v2 3.2.2`](https://xunit.net/docs/getting-started/v3/getting-started)
 * [`Microsoft.Testing.Platform 2.0.2`](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro?tabs=dotnetcli)
 * [`VS Code`](https://code.visualstudio.com/)
+* Solution developed and tested on `Windows 11`
 
 ---

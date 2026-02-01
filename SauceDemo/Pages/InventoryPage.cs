@@ -64,6 +64,11 @@ public class InventoryPage
         return int.TryParse(text, out var count) ? count : 0;
     }
 
+    public async Task<int> GetInventoryItemCountAsync()
+    {
+        return await _page.Locator(InventoryItem).CountAsync();
+    }
+
     public async Task<bool> IsOnPageAsync()
     {
         return _page.Url.Contains("inventory.html");
@@ -74,5 +79,57 @@ public class InventoryPage
         var items = _page.Locator(InventoryItem);
         var item = items.Nth(index);
         await item.Locator(RemoveButton).ClickAsync();
+    }
+
+    public async Task<bool> TryAddItemToCartByIndexAsync(int index)
+    {
+        try
+        {
+            var items = _page.Locator(InventoryItem);
+            var item = items.Nth(index);
+            var addButton = item.Locator(AddToCartButton);
+
+            if (!await addButton.IsVisibleAsync())
+                return false;
+
+            var cartCountBefore = await GetCartItemCountAsync();
+            await addButton.ClickAsync();
+
+            // Wait a moment and check if cart count increased
+            await _page.WaitForTimeoutAsync(500);
+            var cartCountAfter = await GetCartItemCountAsync();
+
+            return cartCountAfter > cartCountBefore;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> TryRemoveItemFromCartByIndexAsync(int index)
+    {
+        try
+        {
+            var items = _page.Locator(InventoryItem);
+            var item = items.Nth(index);
+            var removeButton = item.Locator(RemoveButton);
+
+            if (!await removeButton.IsVisibleAsync())
+                return false;
+
+            var cartCountBefore = await GetCartItemCountAsync();
+            await removeButton.ClickAsync();
+
+            // Wait a moment and check if cart count decreased
+            await _page.WaitForTimeoutAsync(500);
+            var cartCountAfter = await GetCartItemCountAsync();
+
+            return cartCountAfter < cartCountBefore;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

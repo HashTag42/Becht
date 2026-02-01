@@ -3,6 +3,10 @@ using SauceDemo.Pages;
 
 namespace SauceDemo.Tests;
 
+/// <summary>
+/// Scenario 2: Failed Login
+/// Attempt to login with locked_out_user and verify error message.
+/// </summary>
 public class FailedLoginTests : TestBase
 {
     [Fact]

@@ -8,8 +8,8 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 
   * [x] Happy Path
   * [x] Failed Login
-  * [ ] Problem User
-  * [ ] Glitchy User
+  * [x] Problem User
+  * [x] Glitchy User
   * [ ] Error User
   * [ ] Visual Error
 
@@ -35,6 +35,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `./Tests/` - xUnit test classes to the test different scenarios
       * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2.2
+      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 2.4
       * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 2.1
       * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 2.3
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here

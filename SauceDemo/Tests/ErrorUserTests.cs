@@ -27,6 +27,8 @@ public class ErrorUserTests : TestBase
         // ACT & ASSERT
         //
 
+        Log("\n[SCENARIO] Error User");
+
         // Step 1: Login
         Log("[STEP 1] Logging in with error_user...");
         await loginPage.NavigateAsync();

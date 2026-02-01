@@ -26,7 +26,7 @@ public class ProblemUserTests : TestBase
         // ACT & ASSERT
         //
 
-        Log("[SCENARIO] Problem User");
+        Log("\n[SCENARIO] Problem User");
 
         // Login
         Log("[STEP 1] Attempt to Login");

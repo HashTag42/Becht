@@ -30,7 +30,7 @@ public class GlitchyUserTests : TestBase
         // ACT & ASSERT
         //
 
-        Log("[SCENARIO] Glitchy User");
+        Log("\n[SCENARIO] Glitchy User");
 
         try
         {

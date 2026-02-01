@@ -27,7 +27,7 @@ public class HappyPathTests : TestBase
         // ACT & ASSERT
         //
 
-        Log("[SCENARIO] Happy Path");
+        Log("\n[SCENARIO] Happy Path");
 
         // STEP 1: Login
         Log("[STEP 1] Login");

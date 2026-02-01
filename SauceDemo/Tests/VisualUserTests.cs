@@ -22,7 +22,7 @@ public class VisualUserTests : TestBase
         // ACT & ASSERT
         //
 
-        Log("[SCENARIO] Detech Visual Error");
+        Log("\n[SCENARIO] Detech Visual Error");
 
         // First, get baseline from standard_user
         Log("[STEP 1] Getting baseline from standard_user...");

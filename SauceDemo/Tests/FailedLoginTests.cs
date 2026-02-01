@@ -17,7 +17,7 @@ public class FailedLoginTests : TestBase
         //
         var loginPage = new LoginPage(Page);
 
-        Log("[SCENARIO] Failed Login");
+        Log("\n[SCENARIO] Failed Login");
 
         //
         // ACT

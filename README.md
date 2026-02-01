@@ -52,10 +52,10 @@ Developed and tested using:
 * `xUnit.v3` (mtp-v2 version 3.2.2)
 * `Microsoft.Testing.Platform` (version 2.0.2)
 * `VS Code` (version 1.108.2)
+* `Windows 11 Pro` (64-bit version 26200.7623)
 * `Chrome for Testing` (64-bit version 145.0.7632.26)
 * `Chrome` (64-bit version 144.0.7559.110)
 * `Edge` (64-bit version 144.0.3719.92)
 * `Firefox` (64-bit version 147.0.2)
-* `Windows 11` (64-bit version 26200.7623)
 
 ---

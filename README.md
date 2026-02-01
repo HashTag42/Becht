@@ -43,6 +43,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`ParameterizedTests.cs`](./SauceDemo/Tests/ParameterizedTests.cs) - Bonus Scenario 1
       * [`MultiBrowserTests.cs`](./SauceDemo/Tests/MultiBrowserTests.cs) - Bonus Scenario 2
       * [`MobileEmulationTests.cs`](./SauceDemo/Tests/MobileEmulationTests.cs) - Bonus Scenario 3
+      * [`LoadTests.cs`](./SauceDemo/Tests/LoadTests.cs) - Bonus Scenario 4
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
     * `./bin/Debug/net8.0/logs/test-log.txt` - Upon test execution, a test log will be populated here
 

@@ -134,6 +134,21 @@ public class CheckoutPage
         ");
     }
 
+    public async Task<bool> TryClickFinishAsync()
+    {
+        try
+        {
+            await _page.ClickAsync(FinishButton, new PageClickOptions { Timeout = 5000 });
+            // Check if we navigated to complete page
+            await _page.WaitForURLAsync("**/checkout-complete.html", new PageWaitForURLOptions { Timeout = 5000 });
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public async Task<bool> TryFillFirstNameAsync(string firstName)
     {
         try

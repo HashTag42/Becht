@@ -35,7 +35,7 @@ public class FailedLoginTests : TestBase
         await Assertions.Expect(loginPage.ErrorMessage).ToContainTextAsync("locked out", new() { IgnoreCase = true });
 
         // Report the error message
-        TestContext.Current.TestOutputHelper?.WriteLine($"[REPORT] Locked out user error message: {errorMessage}");
+        Log($"[REPORT] Locked out user error message: {errorMessage}");
 
         // For debugging purposes
         await TestData.DebugDelayAsync(TestContext.Current.CancellationToken);

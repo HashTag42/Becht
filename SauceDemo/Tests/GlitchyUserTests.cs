@@ -237,7 +237,7 @@ public class GlitchyUserTests : TestBase
 
     private void ReportIssues(List<string> issues, bool completed)
     {
-        Log("GLITCHY USER TEST REPORT");
+        Log("[GLITCHY USER TEST REPORT]");
         Log($"Test completed: {(completed ? "YES" : "NO - ABORTED")}");
         Log($"Issues found: {issues.Count}");
 

@@ -13,10 +13,19 @@ public class VisualUserTests : TestBase
     [Fact]
     public async Task VisualUser_DetectUIElementsOutsideBoxes()
     {
-       var visualIssues = new List<string>();
+        //
+        // ARRANGE
+        //
+        var visualIssues = new List<string>();
+
+        //
+        // ACT & ASSERT
+        //
+
+        Log("[SCENARIO] Detech Visual Error");
 
         // First, get baseline from standard_user
-        TestContext.Current.TestOutputHelper?.WriteLine("\n[STEP 1] Getting baseline from standard_user...");
+        Log("[STEP 1] Getting baseline from standard_user...");
         var loginPage = new LoginPage(Page);
         var inventoryPage = new InventoryPage(Page);
 
@@ -32,7 +41,7 @@ public class VisualUserTests : TestBase
         await TakeScreenshotAsync("Visual_StandardUser_Baseline");
 
         // Logout and login with visual_user
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 2] Logging in with visual_user...");
+        Log("[STEP 2] Logging in with visual_user...");
         await Page.GotoAsync(LoginPage.Url);
         await loginPage.LoginAsync(TestData.Credentials.VisualUser, TestData.Credentials.Password);
 
@@ -47,7 +56,7 @@ public class VisualUserTests : TestBase
         var visualImages = await inventoryPage.GetImageInfoAsync();
 
         // Compare and report issues
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 3] Analyzing visual differences...");
+        Log("[STEP 3] Analyzing visual differences...");
 
         foreach (var img in visualImages)
         {
@@ -77,7 +86,7 @@ public class VisualUserTests : TestBase
         }
 
         // Additional visual checks using Playwright's built-in capabilities
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 4] Checking for additional visual anomalies...");
+        Log("[STEP 4] Checking for additional visual anomalies...");
 
         // Check cart icon position
         var cartIcon = Page.Locator(".shopping_cart_link");
@@ -142,27 +151,27 @@ public class VisualUserTests : TestBase
         await Page.WaitForLoadStateAsync();
         await TakeScreenshotAsync("Comparison_VisualUser");
 
-        TestContext.Current.TestOutputHelper?.WriteLine("[INFO] Screenshots saved for manual comparison:");
-        TestContext.Current.TestOutputHelper?.WriteLine("  - Comparison_StandardUser_*.png");
-        TestContext.Current.TestOutputHelper?.WriteLine("  - Comparison_VisualUser_*.png");
-        TestContext.Current.TestOutputHelper?.WriteLine("Compare these screenshots to identify visual differences.");
+        Log("[INFO] Screenshots saved for manual comparison:");
+        Log("  - Comparison_StandardUser_*.png");
+        Log("  - Comparison_VisualUser_*.png");
+        Log("Compare these screenshots to identify visual differences.");
     }
 
     private void ReportVisualIssues(List<string> issues)
     {
-        TestContext.Current.TestOutputHelper?.WriteLine("VISUAL USER TEST REPORT");
-        TestContext.Current.TestOutputHelper?.WriteLine($"Visual issues detected: {issues.Count}\n");
+        Log("[VISUAL USER TEST REPORT]");
+        Log($"Visual issues detected: {issues.Count}");
 
         if (issues.Count == 0)
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("  No visual issues detected (unexpected for visual_user)");
+            Log("  No visual issues detected (unexpected for visual_user)");
         }
         else
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("UI Elements outside their containers:");
+            Log("UI Elements outside their containers:");
             foreach (var issue in issues)
             {
-                TestContext.Current.TestOutputHelper?.WriteLine($"  • {issue}");
+                Log($"  • {issue}");
             }
         }
     }

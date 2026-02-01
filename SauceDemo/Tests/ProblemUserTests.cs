@@ -163,7 +163,7 @@ public class ProblemUserTests : TestBase
 
     private void ReportIssues(List<string> issues)
     {
-        Log("PROBLEM USER TEST REPORT");
+        Log("[PROBLEM USER TEST REPORT]");
 
         if (issues.Count == 0)
         {

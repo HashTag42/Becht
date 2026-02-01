@@ -6,19 +6,19 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 
 * Create Playwright scenarios to test the functionality of a fictitious shopping site at [https://www.saucedemo.com](https://www.saucedemo.com)
 
-  * [x] Happy Path
-  * [x] Failed Login
-  * [x] Problem User
-  * [x] Glitchy User
-  * [x] Error User
-  * [x] Visual Error
+  * [x] 1. Happy Path
+  * [x] 2. Failed Login
+  * [x] 3. Problem User
+  * [x] 4. Glitchy User
+  * [x] 5. Error User
+  * [x] 6. Visual Error
 
 * Bonus scenarios:
-  * [ ] Parameterized test
-  * [ ] Run tests on Chrome and Edge or Firefox
-  * [ ] Simulate a run on iPhone or Android
-  * [ ] Performance/Load testing of 10 users
-  * [ ] CI/CD gated check-in
+  * [x] 1. Parameterized test
+  * [ ] 2. Run tests on Chrome and Edge or Firefox
+  * [ ] 3. Simulate a run on iPhone or Android
+  * [ ] 4. Performance/Load testing of 10 users
+  * [ ] 5. CI/CD gated check-in
 
 ## Solution structure
 

@@ -27,37 +27,39 @@ public class HappyPathTests : TestBase
         // ACT & ASSERT
         //
 
+        Log("[SCENARIO] Happy Path");
+
         // STEP 1: Login
-        TestContext.Current.TestOutputHelper?.WriteLine("\n[STEP 1] Login");
+        Log("[STEP 1] Login");
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.StandardUser, TestData.Credentials.Password);
         await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
         // STEP 2: Add 3 items to the cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 2] Add 3 items to the cart");
+        Log("[STEP 2] Add 3 items to the cart");
         await inventoryPage.AddItemToCartByIndexAsync(0);
         await inventoryPage.AddItemToCartByIndexAsync(1);
         await inventoryPage.AddItemToCartByIndexAsync(2);
         await Assertions.Expect(inventoryPage.CartBadge).ToHaveTextAsync("3");
 
         // STEP 3: Remove 1 item
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 3] Remove 1 item");
+        Log("[STEP 3] Remove 1 item");
         await inventoryPage.RemoveItemFromCartByIndexAsync(0);
         await Assertions.Expect(inventoryPage.CartBadge).ToHaveTextAsync("2");
 
         // STEP 4: Go to cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 4] Go to cart");
+        Log("[STEP 4] Go to cart");
         await inventoryPage.ClickShoppingCartAsync();
         Assert.True(await cartPage.IsOnPageAsync(), "Should navigate to cart page");
         await Assertions.Expect(cartPage.CartItems).ToHaveCountAsync(2);
 
         // STEP 5: Checkout
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 5] Checkout");
+        Log("[STEP 5] Checkout");
         await cartPage.ClickCheckoutAsync();
         await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepOneUrl);
 
         // STEP 6: Fill shipping info
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 6] Fill shipping info");
+        Log("[STEP 6] Fill shipping info");
         await checkoutPage.FillShippingInfoAsync(
             TestData.Shipping.FirstName,
             TestData.Shipping.LastName,
@@ -67,18 +69,18 @@ public class HappyPathTests : TestBase
         await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepTwoUrl);
 
         // STEP 7: Modify total to $500
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 7] Modify total to $500");
+        Log("[STEP 7] Modify total to $500");
         await checkoutPage.ModifyTotalAsync("Total: $500.00");
         await Assertions.Expect(checkoutPage.Total).ToHaveTextAsync("Total: $500.00");
 
         // STEP 8: Finish order
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 8] Finish order");
+        Log("[STEP 8] Finish order");
         await checkoutPage.ClickFinishAsync();
         Assert.True(await checkoutPage.IsOnCompletePageAsync(), "Should navigate to checkout complete page");
         await Assertions.Expect(checkoutPage.CompleteHeaderText).ToHaveTextAsync("Thank you for your order!");
 
         // STEP 9: Go back home
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 9] Go back home");
+        Log("[STEP 9] Go back home");
         await checkoutPage.ClickBackHomeAsync();
         await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 

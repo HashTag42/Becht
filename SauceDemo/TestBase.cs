@@ -84,4 +84,19 @@ public abstract class TestBase : IAsyncLifetime
 
         await Page.ScreenshotAsync(new PageScreenshotOptions { Path = path });
     }
+
+    /// <summary>
+    /// Logs a message to both the test output and a file.
+    /// </summary>
+    /// <param name="message">The message to log</param>
+    protected void Log(string message)
+    {
+        TestContext.Current.TestOutputHelper?.WriteLine(message);
+
+        var logDir = Path.Combine(AppContext.BaseDirectory, "logs");
+        Directory.CreateDirectory(logDir);
+
+        var logPath = Path.Combine(logDir, "test-log.txt");
+        File.AppendAllText(logPath, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {message}{Environment.NewLine}");
+    }
 }

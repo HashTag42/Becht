@@ -16,7 +16,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 * Bonus scenarios:
   * [x] 1. Parameterized test
   * [x] 2. Run tests on Chrome and Edge or Firefox
-  * [ ] 3. Simulate a run on iPhone or Android
+  * [x] 3. Simulate a run on iPhone or Android
   * [ ] 4. Performance/Load testing of 10 users
   * [ ] 5. CI/CD gated check-in
 
@@ -42,10 +42,11 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`VisualUserTests.cs`](./SauceDemo/Tests/VisualUserTests.cs) - Test Scenario 6
       * [`ParameterizedTests.cs`](./SauceDemo/Tests/ParameterizedTests.cs) - Bonus Scenario 1
       * [`MultiBrowserTests.cs`](./SauceDemo/Tests/MultiBrowserTests.cs) - Bonus Scenario 2
+      * [`MobileEmulationTests.cs`](./SauceDemo/Tests/MobileEmulationTests.cs) - Bonus Scenario 3
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
     * `./bin/Debug/net8.0/logs/test-log.txt` - Upon test execution, a test log will be populated here
 
-## Developed and tested using:
+## Developed and tested using
 
 * ![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white) version `14`
 * ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4) `x64` version `8.0.417`

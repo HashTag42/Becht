@@ -41,6 +41,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Scenario 5
       * [`VisualUserTests.cs`](./SauceDemo/Tests/VisualUserTests.cs) - Scenario 6
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
+    * `./bin/Debug/net8.0/logs/test-log.txt` - Upon test execution, a test log will be populated here
 
 ## Dependencies
 

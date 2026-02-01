@@ -29,10 +29,10 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
     * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
     * [`TestData.cs`](./SauceDemo/TestData.cs) - Configuration file containging static constants for use across tests
     * `./Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
-      * [`CartPage.cs`](./SauceDemo/Pages/CartPage.cs)
-      * [`CheckoutPage.cs`](./SauceDemo/Pages/CheckoutPage.cs)
-      * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
-      * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
+      * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs) - Login page POM
+      * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs) - Inventory page POM
+      * [`CartPage.cs`](./SauceDemo/Pages/CartPage.cs) - Shopping cart POM
+      * [`CheckoutPage.cs`](./SauceDemo/Pages/CheckoutPage.cs) - Checkout pages POM
     * `./Tests/` - xUnit test classes to the test different scenarios
       * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Test Scenario 1
       * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Test Scenario 2

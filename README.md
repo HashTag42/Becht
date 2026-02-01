@@ -41,14 +41,17 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 3
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
 
-## Dependencies
+## Development components
 
-* [`C#`](https://learn.microsoft.com/en-us/dotnet/csharp/)
-* [`.NET 8.0`](https://dotnet.microsoft.com/en-us/learn)
-* [`Microsoft.Playwright 1.57`](https://playwright.dev/dotnet/docs/intro)
-* [`xUnit.v3.mtp-v2 3.2.2`](https://xunit.net/docs/getting-started/v3/getting-started)
-* [`Microsoft.Testing.Platform 2.0.2`](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-intro?tabs=dotnetcli)
-* [`VS Code`](https://code.visualstudio.com/)
-* Solution developed and tested on `Windows 11`
+* **`C#`** (version `12`)
+* **`.NET SDK 8.0`** (version `8.0.417`)
+* **`Microsoft.Playwright`** (version `1.57`)
+* **`xUnit.v3.mtp-v2`** (version `3.2.2`)
+* **`Microsoft.Testing.Platform`** (version `2.0.2`)
+* **`VS Code`** (version `1.108.2`)
+* **`Edge`** (version `144.0.3719.92`)
+* **`Chrome`** (version `144.0.7559.110`)
+* **`Firefox`** (version `147.0.2`)
+* Developed and tested on **`Windows 11`**
 
 ---

@@ -47,7 +47,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 Developed and tested using:
 
 * `C#` (version 14)
-* `.NET SDK 10.0` (x64 version 10.0.102)
+* `.NET SDK 8.0` (x64 version 8.0.417)
 * `Microsoft.Playwright` (version 1.57)
 * `xUnit.v3` (mtp-v2 version 3.2.2)
 * `Microsoft.Testing.Platform` (version 2.0.2)

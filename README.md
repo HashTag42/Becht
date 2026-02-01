@@ -27,6 +27,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
   * `SauceDemo/`
     * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file
     * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
+    * [`TestData.cs`](./SauceDemo/TestData.cs) - Configuration file containging static constants for use across tests
     * `Pages/` - Page Object Model (POM) classes for Playwright testing against the SauceDemo website
       * [`CartPage.cs`](./SauceDemo/Pages/CartPage.cs)
       * [`CheckoutPage.cs`](./SauceDemo/Pages/CheckoutPage.cs)

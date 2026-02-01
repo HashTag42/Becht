@@ -52,7 +52,11 @@ public class HappyPathTests : TestBase
         await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepOneUrl);
 
         // STEP 6: Fill shipping info
-        await checkoutPage.FillShippingInfoAsync("Cesar", "Garcia", "12345");
+        await checkoutPage.FillShippingInfoAsync(
+            TestData.Shipping.FirstName,
+            TestData.Shipping.LastName,
+            TestData.Shipping.PostalCode);
+
         await checkoutPage.ClickContinueAsync();
         await Assertions.Expect(Page).ToHaveURLAsync(CheckoutPage.StepTwoUrl);
 
@@ -72,8 +76,6 @@ public class HappyPathTests : TestBase
         await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
         // For debugging purposes
-        #if DEBUG
-            await Task.Delay(TimeSpan.FromSeconds(1), TestContext.Current.CancellationToken);
-        #endif
+        await TestData.DebugDelayAsync(TestContext.Current.CancellationToken);
     }
 }

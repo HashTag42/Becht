@@ -26,29 +26,33 @@ public class ProblemUserTests : TestBase
         // ACT & ASSERT
         //
 
+        Log("[SCENARIO] Problem User");
+
         // Login
+        Log("[STEP 1] Attempt to Login");
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.ProblemUser, TestData.Credentials.Password);
 
         if (!await inventoryPage.IsOnPageAsync())
         {
-            issues.Add("CRITICAL: Could not login with problem_user");
+            issues.Add("[CRITICAL] Could not login with problem_user");
             ReportIssues(issues);
             Assert.Fail("Login failed");
         }
 
         // Check initial cart state (should have 2 items per requirements)
+        Log("[STEP 2] Check initial cart state (should have 2 items per requirements)");
         var initialCartCount = await inventoryPage.GetCartItemCountAsync();
-        TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Initial cart count: {initialCartCount}");
+        Log($"[INFO] Initial cart count: {initialCartCount}");
         if (initialCartCount == 2)
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("[INFO] Confirmed: 2 items already in cart on login");
+            Log("[INFO] Confirmed: 2 items already in cart on login");
         }
 
         await TakeScreenshotAsync("ProblemUser_InitialState");
 
         // Try to add items to cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[TEST] Attempting to add items to cart...");
+        Log("[STEP 3] Attempting to add items to cart...");
         var itemCount = await inventoryPage.GetInventoryItemCountAsync();
 
         for (int i = 0; i < Math.Min(itemCount, 6); i++)
@@ -63,14 +67,14 @@ public class ProblemUserTests : TestBase
             }
             else
             {
-                TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Successfully added item at index {i}");
+                Log($"[INFO] Successfully added item at index {i}");
             }
         }
 
         await TakeScreenshotAsync("ProblemUser_AfterAddAttempts");
 
         // Try to remove items from cart
-        TestContext.Current.TestOutputHelper?.WriteLine("[TEST] Attempting to remove items from cart...");
+        Log("[STEP 4] Attempting to remove items from cart...");
         var currentCartCount = await inventoryPage.GetCartItemCountAsync();
 
         for (int i = 0; i < Math.Min(itemCount, 3); i++)
@@ -85,13 +89,14 @@ public class ProblemUserTests : TestBase
             }
             else if (removeSuccess)
             {
-                TestContext.Current.TestOutputHelper?.WriteLine($"[INFO] Successfully removed item at index {i}");
+                Log($"[INFO] Successfully removed item at index {i}");
             }
         }
 
         await TakeScreenshotAsync("ProblemUser_AfterRemoveAttempts");
 
         // Go to cart and checkout
+        Log("[STEP 5] Click Shopping Cart icon");
         await inventoryPage.ClickShoppingCartAsync();
 
         if (!await cartPage.IsOnPageAsync())
@@ -109,7 +114,7 @@ public class ProblemUserTests : TestBase
         }
 
         // Try to fill checkout form
-        TestContext.Current.TestOutputHelper?.WriteLine("[TEST] Attempting to fill checkout form...");
+        Log("[STEP 6] Attempting to fill checkout form...");
 
         var firstNameSuccess = await checkoutPage.TryFillFirstNameAsync(TestData.Shipping.FirstName);
         if (!firstNameSuccess)
@@ -132,6 +137,7 @@ public class ProblemUserTests : TestBase
         await TakeScreenshotAsync("ProblemUser_CheckoutForm");
 
         // Try to continue
+        Log("[STEP 7] Attempt to continue");
         await checkoutPage.ClickContinueAsync();
         await Page.WaitForTimeoutAsync(1000);
 
@@ -157,18 +163,18 @@ public class ProblemUserTests : TestBase
 
     private void ReportIssues(List<string> issues)
     {
-        TestContext.Current.TestOutputHelper?.WriteLine("PROBLEM USER TEST REPORT");
+        Log("PROBLEM USER TEST REPORT");
 
         if (issues.Count == 0)
         {
-            TestContext.Current.TestOutputHelper?.WriteLine("No issues found (unexpected for problem_user)");
+            Log("No issues found (unexpected for problem_user)");
         }
         else
         {
-            TestContext.Current.TestOutputHelper?.WriteLine($"Total issues found: {issues.Count}");
+            Log($"Total issues found: {issues.Count}");
             foreach (var issue in issues)
             {
-                TestContext.Current.TestOutputHelper?.WriteLine($"   * {issue}");
+                Log($"   * {issue}");
             }
         }
     }

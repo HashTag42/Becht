@@ -10,8 +10,8 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
   * [x] Failed Login
   * [x] Problem User
   * [x] Glitchy User
-  * [ ] Error User
-  * [ ] Visual Error
+  * [x] Error User
+  * [x] Visual Error
 
 * Bonus scenarios:
   * [ ] Parameterized test
@@ -34,10 +34,11 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `./Tests/` - xUnit test classes to the test different scenarios
-      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2.2
-      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 2.4
-      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 2.1
-      * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 2.3
+      * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Scenario 5
+      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2
+      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 4
+      * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 1
+      * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 3
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
 
 ## Dependencies

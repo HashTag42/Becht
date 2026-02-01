@@ -28,7 +28,7 @@ public class ErrorUserTests : TestBase
         //
 
         // Step 1: Login
-        TestContext.Current.TestOutputHelper?.WriteLine("[STEP 1] Logging in with error_user...");
+        TestContext.Current.TestOutputHelper?.WriteLine("\n[STEP 1] Logging in with error_user...");
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.ErrorUser, TestData.Credentials.Password);
 

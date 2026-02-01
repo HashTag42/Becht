@@ -64,6 +64,43 @@ public class InventoryPage
         return int.TryParse(text, out var count) ? count : 0;
     }
 
+    /// <summary>
+    /// Gets the bounding boxes of all inventory item images for visual comparison.
+    /// </summary>
+    public async Task<List<ImageInfo>> GetImageInfoAsync()
+    {
+        var imageInfos = new List<ImageInfo>();
+        var items = _page.Locator(InventoryItem);
+        var count = await items.CountAsync();
+
+        for (int i = 0; i < count; i++)
+        {
+            var item = items.Nth(i);
+            var itemBox = await item.BoundingBoxAsync();
+            var img = item.Locator("img");
+            var imgBox = await img.BoundingBoxAsync();
+            var imgSrc = await img.GetAttributeAsync("src");
+
+            if (itemBox != null && imgBox != null)
+            {
+                imageInfos.Add(new ImageInfo
+                {
+                    Index = i,
+                    ImageSource = imgSrc ?? "",
+                    ItemBounds = new BoundingBoxInfo { X = itemBox.X, Y = itemBox.Y, Width = itemBox.Width, Height = itemBox.Height },
+                    ImageBounds = new BoundingBoxInfo { X = imgBox.X, Y = imgBox.Y, Width = imgBox.Width, Height = imgBox.Height },
+                    IsImageOutsideContainer =
+                        imgBox.X < itemBox.X ||
+                        imgBox.Y < itemBox.Y ||
+                        imgBox.X + imgBox.Width > itemBox.X + itemBox.Width + 1 ||
+                        imgBox.Y + imgBox.Height > itemBox.Y + itemBox.Height + 1
+                });
+            }
+        }
+
+        return imageInfos;
+    }
+
     public async Task<int> GetInventoryItemCountAsync()
     {
         return await _page.Locator(InventoryItem).CountAsync();
@@ -132,4 +169,21 @@ public class InventoryPage
             return false;
         }
     }
+}
+
+public class ImageInfo
+{
+    public int Index { get; set; }
+    public string ImageSource { get; set; } = "";
+    public BoundingBoxInfo ItemBounds { get; set; } = null!;
+    public BoundingBoxInfo ImageBounds { get; set; } = null!;
+    public bool IsImageOutsideContainer { get; set; }
+}
+
+public class BoundingBoxInfo
+{
+    public float X { get; set; }
+    public float Y { get; set; }
+    public float Width { get; set; }
+    public float Height { get; set; }
 }

@@ -7,7 +7,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 * Create Playwright scenarios to test the functionality of a fictitious shopping site at [https://www.saucedemo.com](https://www.saucedemo.com)
 
   * [x] Happy Path
-  * [ ] Failed Login
+  * [x] Failed Login
   * [ ] Problem User
   * [ ] Glitchy User
   * [ ] Error User
@@ -36,6 +36,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
     * `Tests/` - xUnit test classes to the test different scenarios
       * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2.2
       * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 2.1
+    * `bin/Debug/net8.0/screenshots` - Screenshots generated during the tests
 
 ## Dependencies
 

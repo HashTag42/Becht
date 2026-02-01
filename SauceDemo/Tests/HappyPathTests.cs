@@ -73,6 +73,8 @@ public class HappyPathTests : TestBase
         await checkoutPage.ClickBackHomeAsync();
         await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
+        await TakeScreenshotAsync("HappyPath_Complete");
+
         // For debugging purposes
         await TestData.DebugDelayAsync(TestContext.Current.CancellationToken);
     }

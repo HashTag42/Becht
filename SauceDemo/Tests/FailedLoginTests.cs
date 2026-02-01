@@ -11,27 +11,17 @@ public class FailedLoginTests : TestBase
         //
         // ARRANGE
         //
-        #region ARRANGE
-
         var loginPage = new LoginPage(Page);
-
-        #endregion
 
         //
         // ACT
         //
-        #region ACT
-
         await loginPage.NavigateAsync();
         await loginPage.LoginAsync(TestData.Credentials.LockedOutUser, TestData.Credentials.Password);
-
-        #endregion
 
         //
         // ASSERT
         //
-        #region ASSERT
-
         await Assertions.Expect(loginPage.ErrorMessage).ToBeVisibleAsync();
         var errorMessage = await loginPage.GetErrorMessageAsync();
         await Assertions.Expect(loginPage.ErrorMessage).ToContainTextAsync("locked out", new() { IgnoreCase = true });
@@ -42,6 +32,6 @@ public class FailedLoginTests : TestBase
         // For debugging purposes
         await TestData.DebugDelayAsync(TestContext.Current.CancellationToken);
 
-        #endregion
+        await TakeScreenshotAsync("FailedLogin_LockedOutUser");
     }
 }

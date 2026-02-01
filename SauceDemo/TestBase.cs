@@ -69,4 +69,19 @@ public abstract class TestBase : IAsyncLifetime
         // Dispose Playwright resources
         Playwright.Dispose();
     }
+
+    /// <summary>
+    /// Takes a screenshot and saves it to the screenshots folder.
+    /// </summary>
+    /// <param name="name">A descriptive name for the screenshot</param>
+    protected async Task TakeScreenshotAsync(string name)
+    {
+        var screenshotsDir = Path.Combine(AppContext.BaseDirectory, "screenshots");
+        Directory.CreateDirectory(screenshotsDir);
+
+        var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        var path = Path.Combine(screenshotsDir, $"{name}_{timestamp}.png");
+
+        await Page.ScreenshotAsync(new PageScreenshotOptions { Path = path });
+    }
 }

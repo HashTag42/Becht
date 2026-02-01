@@ -44,18 +44,18 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 
 ## Dependencies
 
-Developed and tested with:
+Developed and tested using:
 
-* **`C#`** (version `12`)
-* **`.NET SDK 8.0`** (version `8.0.417`)
-* **`Microsoft.Playwright`** (version `1.57`)
-* **`xUnit.v3.mtp-v2`** (version `3.2.2`)
-* **`Microsoft.Testing.Platform`** (version `2.0.2`)
-* **`VS Code`** (version `1.108.2`)
-* **`Chromium`** (version `143.0.7499.4`)
-* **`Chrome`** (version `144.0.7559.110`)
-* **`Edge`** (version `144.0.3719.92`)
-* **`Firefox`** (version `147.0.2`)
-* **`Windows 11`** (version `26200.7623`)
+* `C#` (version 14)
+* `.NET SDK 10.0` (x64 version 10.0.102)
+* `Microsoft.Playwright` (version 1.57)
+* `xUnit.v3` (mtp-v2 version 3.2.2)
+* `Microsoft.Testing.Platform` (version 2.0.2)
+* `VS Code` (version 1.108.2)
+* `Chrome for Testing` (64-bit version 145.0.7632.26)
+* `Chrome` (64-bit version 144.0.7559.110)
+* `Edge` (64-bit version 144.0.3719.92)
+* `Firefox` (64-bit version 147.0.2)
+* `Windows 11` (64-bit version 26200.7623)
 
 ---

@@ -39,13 +39,20 @@ public abstract class TestBase : IAsyncLifetime
         // Create the Playwright instance
         Playwright = await Microsoft.Playwright.Playwright.CreateAsync();
 
-        // Gets the browser type
-        var browser = Playwright.Chromium;
-
-        // Launches the browser with the headless setting
-        Browser = await browser.LaunchAsync(new BrowserTypeLaunchOptions
+        // Gets the browser type and channel based on settings
+        (IBrowserType browserType, string? channel) = TestData.Settings.Browser switch
         {
-            ExecutablePath = @"C:\Tools\chrome-win64\chrome.exe",
+            "firefox" => (Playwright.Firefox, "firefox"),
+            "webkit" => (Playwright.Webkit, "webkit"),
+            "chrome" => (Playwright.Chromium, "chrome"),
+            "msedge" => (Playwright.Chromium, "msedge"),
+            _ => (Playwright.Chromium, null)
+        };
+
+        // Launches the browser with the configured settings
+        Browser = await browserType.LaunchAsync(new BrowserTypeLaunchOptions
+        {
+            Channel = channel,
             Headless = TestData.Settings.Headless
         });
 

@@ -23,7 +23,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 ## Solution structure
 
 * Repo: [`https://github.com/HashTag42/Becht`](https://github.com/HashTag42/Becht)
-  * [`Becht.sln`](./Becht.sln) - Solution file
+  * [`Playwright.sln`](./Playwright.sln) - Solution file
   * `./SauceDemo/`
     * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file
     * [`TestBase.cs`](./SauceDemo/TestBase.cs) - Abstract base class for Playwright tests that handles browser setup and teardown using xUnit's lifecycle
@@ -34,14 +34,17 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`InventoryPage.cs`](./SauceDemo/Pages/InventoryPage.cs)
       * [`LoginPage.cs`](./SauceDemo/Pages/LoginPage.cs)
     * `./Tests/` - xUnit test classes to the test different scenarios
-      * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Scenario 5
-      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2
-      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 4
       * [`HappyPathTests.cs`](./SauceDemo/Tests/HappyPathTests.cs) - Scenario 1
+      * [`FailedLoginTests.cs`](./SauceDemo/Tests/FailedLoginTests.cs) - Scenario 2
       * [`ProblemUserTests.cs`](./SauceDemo/Tests/ProblemUserTests.cs) - Scenario 3
+      * [`GlitchyUserTests.cs`](./SauceDemo/Tests/GlitchyUserTests.cs) - Scenario 4
+      * [`ErrorUserTests.cs`](./SauceDemo/Tests/ErrorUserTests.cs) - Scenario 5
+      * [`VisualUserTests.cs`](./SauceDemo/Tests/VisualUserTests.cs) - Scenario 6
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
 
-## Development components
+## Dependencies
+
+Developed and tested with:
 
 * **`C#`** (version `12`)
 * **`.NET SDK 8.0`** (version `8.0.417`)
@@ -49,9 +52,10 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 * **`xUnit.v3.mtp-v2`** (version `3.2.2`)
 * **`Microsoft.Testing.Platform`** (version `2.0.2`)
 * **`VS Code`** (version `1.108.2`)
-* **`Edge`** (version `144.0.3719.92`)
+* **`Chromium`** (version `143.0.7499.4`)
 * **`Chrome`** (version `144.0.7559.110`)
+* **`Edge`** (version `144.0.3719.92`)
 * **`Firefox`** (version `147.0.2`)
-* Developed and tested on **`Windows 11`**
+* **`Windows 11`** (version `26200.7623`)
 
 ---

@@ -42,11 +42,10 @@ public abstract class TestBase : IAsyncLifetime
         // Gets the browser type
         var browser = Playwright.Chromium;
 
-        // Launches the browser witht the headless setting
+        // Launches the browser with the headless setting
         Browser = await browser.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            // Set to false for debugging and observe browser behavior
-            Headless = false
+            Headless = TestData.Settings.Headless
         });
 
         // Creates a new  isolated browser context

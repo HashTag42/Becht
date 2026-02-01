@@ -9,6 +9,7 @@ public static class TestData
     {
         public const int DelaySeconds = 1;
         public const bool EnableDebugDelay = true;
+        public const bool Headless = false;
     }
 
     public static class Urls

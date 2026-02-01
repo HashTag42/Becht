@@ -11,7 +11,7 @@ public class LoginPage
     //
     // URL
     //
-    public const string Url = "https://www.saucedemo.com/";
+    public const string Url = TestData.Urls.BaseUrl;
 
     //
     // CSS SELECTORS
@@ -20,17 +20,6 @@ public class LoginPage
     private const string PasswordInput = "#password";
     // Note the login button is actually an <input type="submit" rather than a button.
     private const string LoginButton = "#login-button";
-
-    //
-    // TEST CREDENTIALS
-    //
-    public const string StandardUser = "standard_user";
-    public const string LockedOutUser = "locked_out_user";
-    public const string ProblemUser = "problem_user";
-    public const string PerformanceGlitchUser = "performance_glitch_user";
-    public const string ErrorUser = "error_user";
-    public const string VisualUser = "visual_user";
-    public const string Password = "secret_sauce";
 
     //
     // PRIVATE FIELDS

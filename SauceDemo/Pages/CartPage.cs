@@ -10,7 +10,7 @@ public class CartPage
     //
     // URL
     //
-    public const string Url = "https://www.saucedemo.com/cart.html";
+    public const string Url = TestData.Urls.Cart;
 
     //
     // CSS SELECTORS

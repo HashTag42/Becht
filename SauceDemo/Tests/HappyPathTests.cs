@@ -29,7 +29,7 @@ public class HappyPathTests : TestBase
 
         // STEP 1: Login
         await loginPage.NavigateAsync();
-        await loginPage.LoginAsync(LoginPage.StandardUser, LoginPage.Password);
+        await loginPage.LoginAsync(TestData.Credentials.StandardUser, TestData.Credentials.Password);
         await Assertions.Expect(Page).ToHaveURLAsync(InventoryPage.Url);
 
         // STEP 2: Add 3 items to the cart
@@ -62,13 +62,11 @@ public class HappyPathTests : TestBase
 
         // STEP 7: Modify total to $500
         await checkoutPage.ModifyTotalAsync("Total: $500.00");
-        var modifiedTotal = await checkoutPage.GetTotalAsync();
         await Assertions.Expect(checkoutPage.Total).ToHaveTextAsync("Total: $500.00");
 
         // STEP 8: Finish order
         await checkoutPage.ClickFinishAsync();
         Assert.True(await checkoutPage.IsOnCompletePageAsync(), "Should navigate to checkout complete page");
-        var completeHeader = await checkoutPage.GetCompleteHeaderAsync();
         await Assertions.Expect(checkoutPage.CompleteHeaderText).ToHaveTextAsync("Thank you for your order!");
 
         // STEP 9: Go back home

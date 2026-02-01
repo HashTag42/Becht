@@ -10,7 +10,7 @@ public class InventoryPage
     //
     // URL
     //
-    public const string Url = "https://www.saucedemo.com/inventory.html";
+    public const string Url = TestData.Urls.Inventory;
 
     //
     // CSS SELECTORS

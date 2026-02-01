@@ -11,9 +11,9 @@ public class CheckoutPage
     //
     // URLs
     //
-    public const string StepOneUrl = "https://www.saucedemo.com/checkout-step-one.html";
-    public const string StepTwoUrl = "https://www.saucedemo.com/checkout-step-two.html";
-    public const string CompleteUrl = "https://www.saucedemo.com/checkout-complete.html";
+    public const string StepOneUrl = TestData.Urls.CheckoutStepOne;
+    public const string StepTwoUrl = TestData.Urls.CheckoutStepTwo;
+    public const string CompleteUrl = TestData.Urls.CheckoutComplete;
 
     //
     // CSS SELECTORS

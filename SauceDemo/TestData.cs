@@ -11,6 +11,27 @@ public static class TestData
         public const bool EnableDebugDelay = true;
     }
 
+    public static class Urls
+    {
+        public const string BaseUrl = "https://www.saucedemo.com";
+        public const string Inventory = BaseUrl + "/inventory.html";
+        public const string Cart = BaseUrl + "/cart.html";
+        public const string CheckoutStepOne = BaseUrl + "/checkout-step-one.html";
+        public const string CheckoutStepTwo = BaseUrl + "/checkout-step-two.html";
+        public const string CheckoutComplete = BaseUrl + "/checkout-complete.html";
+    }
+
+    public static class Credentials
+    {
+        public const string StandardUser = "standard_user";
+        public const string LockedOutUser = "locked_out_user";
+        public const string ProblemUser = "problem_user";
+        public const string PerformanceGlitchUser = "performance_glitch_user";
+        public const string ErrorUser = "error_user";
+        public const string VisualUser = "visual_user";
+        public const string Password = "secret_sauce";
+    }
+
     public static class Shipping
     {
         public const string FirstName = "Cesar";

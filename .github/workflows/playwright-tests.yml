@@ -34,7 +34,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Install Playwright browsers
-        run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps chromium
+        run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal

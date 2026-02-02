@@ -34,7 +34,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Install Playwright browsers
-        run: dotnet tool install --global Microsoft.Playwright.CLI && playwright install chromium --with-deps
+        run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps chromium
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal

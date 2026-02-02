@@ -60,7 +60,6 @@ Write-Output ""
 $categories = $results | Group-Object Category | Sort-Object Name
 foreach ($cat in $categories) {
     $catCode = ($cat.Group | Measure-Object -Property Code -Sum).Sum
-    $catLines = ($cat.Group | Measure-Object -Property Lines -Sum).Sum
     Write-Output "$($cat.Name)"
     foreach ($file in $cat.Group | Sort-Object File) {
         Write-Output "  $($file.File.PadRight(30)) $($file.Code.ToString().PadLeft(5)) lines"

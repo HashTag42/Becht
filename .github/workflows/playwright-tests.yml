@@ -1,15 +1,15 @@
 name: Playwright Tests
 
-# Gated check-in: Runs on pull requests to main branch
+# Gated check-in: Runs on pull requests and pushes to main
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
-  test:
+  build-and-test:
     name: Build & Test
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -22,25 +22,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: 8.0.x
 
       - name: Restore dependencies
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build --configuration Release --no-restore
 
       - name: Install Playwright browsers
-        run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps chromium
+        run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps
 
-      - name: Run Playwright tests
-        run: dotnet test --no-build --configuration Release --logger "trx;LogFileName=test-results.trx"
-        env:
-          # Force headless mode in CI
-          PLAYWRIGHT_HEADLESS: true
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -50,10 +47,10 @@ jobs:
           path: SauceDemo/TestResults/
           retention-days: 30
 
-      - name: Upload screenshots
+      - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: screenshots
+          name: failure-screenshots
           path: SauceDemo/bin/Release/net8.0/screenshots/
           retention-days: 7

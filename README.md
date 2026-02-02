@@ -2,7 +2,7 @@
 
 Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwright-Candidate-Lab%203.docx)
 
-## Summary
+## Lab Summary
 
 * Create Playwright scenarios to test the functionality of a fictitious shopping site at [https://www.saucedemo.com](https://www.saucedemo.com)
 
@@ -22,7 +22,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
 
 ## Structure
 
-* Repo: [`https://github.com/HashTag42/Becht`](https://github.com/HashTag42/Becht)
+* [`https://github.com/HashTag42/Becht`](https://github.com/HashTag42/Becht) - Public Repo
   * [`Playwright.sln`](./Playwright.sln) - Solution file
   * `./SauceDemo/`
     * [`SauceDemo.csproj`](./SauceDemo/SauceDemo.csproj) - Project file

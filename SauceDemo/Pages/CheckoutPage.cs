@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 namespace SauceDemo.Pages;
 
 /// <summary>
-/// Page Object Model for the Sauce Demo Checkout Pages"
+/// Page Object Model for the Sauce Demo Checkout Pages
 /// Step One, Step Two, Complete
 /// </summary>
 public class CheckoutPage

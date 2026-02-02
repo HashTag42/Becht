@@ -7,19 +7,35 @@
 
 End-to-end test automation suite for [SauceDemo](https://www.saucedemo.com) using Playwright and xUnit v3.
 
+* Test scenarios
+
+  * [x] 1. Happy Path
+  * [x] 2. Failed Login
+  * [x] 3. Problem User
+  * [x] 4. Glitchy User
+  * [x] 5. Error User
+  * [x] 6. Visual Error
+
+* Bonus scenarios
+  * [x] 1. Parameterized test
+  * [x] 2. Run tests on Chrome and Edge or Firefox
+  * [x] 3. Simulate a run on iPhone or Android
+  * [x] 4. Performance/Load testing of 10 users
+  * [x] 5. CI/CD gated check-in
+
 ## Features
 
-- Page Object Model architecture
-- Cross-browser testing (Chrome, Edge, Firefox)
-- Mobile device emulation (iPhone, Android)
-- Load testing with concurrent users
-- CI/CD integration with GitHub Actions
-- Screenshot capture on test failures
-- Detailed test logging
+* Page Object Model architecture
+* Cross-browser testing (Chrome, Edge, Firefox)
+* Mobile device emulation (iPhone, Android)
+* Load testing with concurrent users
+* CI/CD integration with GitHub Actions
+* Screenshot capture on test failures
+* Detailed test logging
 
 ## Prerequisites
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+* [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ## Quick Start
 
@@ -46,9 +62,6 @@ dotnet test
 
 # Run a specific test class
 dotnet test --filter "HappyPathTests"
-
-# Run tests by category
-dotnet test --filter "FullyQualifiedName~Bonus"
 
 # Run with detailed output
 dotnet test --verbosity normal
@@ -97,8 +110,8 @@ SauceDemo/
 
 Tests run automatically on:
 
-- Pull requests to `main`
-- Pushes to `main`
+* Pull requests to `main`
+* Pushes to `main`
 
 Failed test screenshots are uploaded as artifacts for debugging.
 
@@ -106,5 +119,7 @@ Failed test screenshots are uploaded as artifacts for debugging.
 
 After running tests:
 
-- **Screenshots**: `bin/Debug/net8.0/screenshots/`
-- **Logs**: `bin/Debug/net8.0/logs/test-log.txt`
+* **Screenshots**: `bin/Debug/net8.0/screenshots/`
+* **Logs**: `bin/Debug/net8.0/logs/test-log.txt`
+
+---

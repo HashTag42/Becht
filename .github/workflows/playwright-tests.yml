@@ -1,6 +1,19 @@
+# ==============================================================================
+# Playwright Tests Workflow
+# ==============================================================================
+# This workflow implements gated check-in for the SauceDemo test project.
+# It ensures all Playwright tests pass before changes can be merged to main.
+# ==============================================================================
+
 name: Playwright Tests
 
-# Gated check-in: Runs on pull requests and pushes to main
+# ------------------------------------------------------------------------------
+# Triggers
+# ------------------------------------------------------------------------------
+# pull_request: Runs when a PR targets the main branch (required for gated check-in)
+# push: Runs when code is pushed directly to main
+# workflow_dispatch: Allows manual triggering from GitHub Actions UI
+# ------------------------------------------------------------------------------
 on:
   pull_request:
     branches: [main]
@@ -8,49 +21,74 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# ------------------------------------------------------------------------------
+# Jobs
+# ------------------------------------------------------------------------------
 jobs:
   build-and-test:
     name: Build & Test
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-latest    # Uses GitHub-hosted Ubuntu runner
+    timeout-minutes: 30       # Prevents runaway jobs from consuming resources
 
+    # Set default working directory for all run commands
     defaults:
       run:
         working-directory: ./SauceDemo
 
+    # --------------------------------------------------------------------------
+    # Steps
+    # --------------------------------------------------------------------------
     steps:
+      # Clone the repository to the runner
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Install .NET 8.0 SDK (required for building and running tests)
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 8.0.x   # Uses latest 8.0.x patch version
 
+      # Download NuGet packages (Playwright, xUnit, etc.)
       - name: Restore dependencies
         run: dotnet restore
 
+      # Compile the project in Release configuration
+      # --no-restore: Skip restore since we already did it above
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
+      # Install Playwright browsers (Chromium, Firefox, WebKit)
+      # --with-deps: Also installs required system dependencies on Linux
       - name: Install Playwright browsers
         run: pwsh bin/Release/net8.0/playwright.ps1 install --with-deps
 
+      # Execute all Playwright tests
+      # --no-build: Skip rebuild since we already built above
+      # --verbosity normal: Show test names and results in output
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal
 
+      # --------------------------------------------------------------------------
+      # Artifacts
+      # --------------------------------------------------------------------------
+
+      # Upload test results for later analysis
+      # if: always() - Runs even if tests fail (so we can see what failed)
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results
           path: SauceDemo/TestResults/
-          retention-days: 30
+          retention-days: 30      # Keep results for 30 days
 
+      # Upload screenshots only when tests fail (for debugging)
+      # if: failure() - Only runs when previous steps failed
       - name: Upload screenshots on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: failure-screenshots
           path: SauceDemo/bin/Release/net8.0/screenshots/
-          retention-days: 7
+          retention-days: 7       # Keep failure screenshots for 7 days

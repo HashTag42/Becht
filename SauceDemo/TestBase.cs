@@ -11,7 +11,7 @@ namespace SauceDemo;
 public abstract class TestBase : IAsyncLifetime
 {
     /// <summary>
-    /// IPlaywright - Property for the Playwight engine
+    /// IPlaywright - Property for the Playwright engine
     /// protected - Child classes can access it
     /// private set -  Only this class can assign it
     /// null! - Tells the compiler this will be set before use

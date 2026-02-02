@@ -9,7 +9,11 @@ public static class TestData
     {
         public const int DelaySeconds = 1;
         public const bool EnableDebugDelay = true;
-        public const bool Headless = false;
+
+        /// <summary>
+        /// Runs headless when CI environment variable is set (e.g., GitHub Actions).
+        /// </summary>
+        public static bool Headless => Environment.GetEnvironmentVariable("CI") == "true";
 
         /// <summary>
         /// Browser to use: "chromium", "chrome", "msedge", "firefox", "webkit".

@@ -1,4 +1,4 @@
-# Becht
+# Becht repo
 
 Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwright-Candidate-Lab%203.docx)
 
@@ -17,8 +17,8 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
   * [x] 1. Parameterized test
   * [x] 2. Run tests on Chrome and Edge or Firefox
   * [x] 3. Simulate a run on iPhone or Android
-  * [ ] 4. Performance/Load testing of 10 users
-  * [ ] 5. CI/CD gated check-in
+  * [x] 4. Performance/Load testing of 10 users
+  * [x] 5. CI/CD gated check-in
 
 ## Structure
 
@@ -44,6 +44,7 @@ Solutions to the problems listed in [`Playwright-Candidate-Lab 3.docx`](./Playwr
       * [`MultiBrowserTests.cs`](./SauceDemo/Tests/MultiBrowserTests.cs) - Bonus Scenario 2
       * [`MobileEmulationTests.cs`](./SauceDemo/Tests/MobileEmulationTests.cs) - Bonus Scenario 3
       * [`LoadTests.cs`](./SauceDemo/Tests/LoadTests.cs) - Bonus Scenario 4
+    * `./.github/workflows/playwright-tests.yml` - Bonus Scenario 5
     * `./bin/Debug/net8.0/screenshots/` - Upon test execution, screenshots generated during the tests will be stored here
     * `./bin/Debug/net8.0/logs/test-log.txt` - Upon test execution, a test log will be populated here
 

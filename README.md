@@ -52,19 +52,9 @@ pwsh bin/Debug/net8.0/playwright.ps1 install
 
 # Run all tests
 dotnet test
-```
-
-## Running Tests
-
-```bash
-# Run all tests
-dotnet test
 
 # Run a specific test class
-dotnet test --filter "HappyPathTests"
-
-# Run with detailed output
-dotnet test --verbosity normal
+dotnet run -- -method "*StandardUser_CanCompleteFullPurchaseFlow"
 ```
 
 ## Test Scenarios

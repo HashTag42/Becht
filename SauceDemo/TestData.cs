@@ -18,7 +18,7 @@ public static class TestData
         /// <summary>
         /// Browser to use: "chromium", "chrome", "msedge", "firefox", "webkit".
         /// </summary>
-        public const string Browser = "firefox";
+        public const string Browser = "chromium";
     }
 
     public static class Urls

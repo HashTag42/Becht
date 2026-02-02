@@ -9,12 +9,12 @@ public static class TestData
     {
         public const int DelaySeconds = 1;
         public const bool EnableDebugDelay = true;
-        public const bool Headless = true;
+        public const bool Headless = false;
 
         /// <summary>
         /// Browser to use: "chromium", "chrome", "msedge", "firefox", "webkit".
         /// </summary>
-        public const string Browser = "msedge";
+        public const string Browser = "firefox";
     }
 
     public static class Urls

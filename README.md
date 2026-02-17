@@ -36,16 +36,20 @@ End-to-end test automation suite for [SauceDemo](https://www.saucedemo.com) usin
 ## Prerequisites
 
 * [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+* npm (to install Playwright)
 
 ## Quick Start
 
 ```bash
+# Install Playwright
+dotnet add package Microsoft.Playwright.MSTest
+
 # Clone the repository
 git clone https://github.com/HashTag42/Becht.git
 cd Becht/SauceDemo
 
 # Restore dependencies
-dotnet restore
+dotnet build
 
 # Install Playwright browsers
 pwsh bin/Debug/net8.0/playwright.ps1 install

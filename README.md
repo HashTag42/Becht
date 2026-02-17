@@ -44,10 +44,11 @@ End-to-end test automation suite for [SauceDemo](https://www.saucedemo.com) usin
 git clone https://github.com/HashTag42/Becht.git
 cd Becht/SauceDemo
 
-# Restore dependencies
-dotnet restore
+# Install Playwright for xUnit.v3 and build
+dotnet add package Microsoft.Playwright.Xunit.v3
+dotnet build
 
-# Install Playwright browsers
+# Install browsers
 pwsh bin/Debug/net8.0/playwright.ps1 install
 
 # Run all tests
